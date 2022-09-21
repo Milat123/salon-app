@@ -1,0 +1,93 @@
+﻿<Window x:Class="SF52_2015.View.SpisakSalona"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SF52_2015.View"
+        mc:Ignorable="d"
+        Title="SpisakSalona" Height="450" Width="895" WindowStartupLocation="CenterScreen">
+	<Window.Background>
+		<ImageBrush Stretch="Fill" AlignmentY="Top" AlignmentX="Center" ImageSource="/SF52-2015;component/Salon3.jpg"></ImageBrush>
+	</Window.Background>
+	<Grid Name="mainWindowGrid" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Visible">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="30*"/>
+			<RowDefinition Height="192*"/>
+			<RowDefinition Height="120*"/>
+		</Grid.RowDefinitions>
+		<Grid Grid.ColumnSpan="2" Grid.Row="1">
+
+
+			<!-- Drugi red kraj ItemsSource="{Binding Path=korisniciDataGrid}"-->
+			<DataGrid x:Name="salonDataGrid"   ItemsSource="{Binding}"    AutoGenerateColumns="False"  HorizontalAlignment="Left" Margin="14,11,0,-38" VerticalAlignment="Top" CanUserAddRows="False" Height="262" Width="813">
+				<DataGrid.Columns>
+					<DataGridTextColumn  Header="Salon ID" Binding="{Binding Path = salon_id}"  Width="200"  FontSize="17"  IsReadOnly="True">
+						<DataGridTextColumn.HeaderTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<TextBlock  Text="{Binding Content, RelativeSource=
+                                         {RelativeSource Mode=TemplatedParent}}"/>
+									<TextBox PreviewTextInput="NumberValidationTextBox" x:Name="txtId" Width="34" TextChanged="txtName_TextChanged" MaxLength="9"  />
+								</StackPanel>
+							</DataTemplate>
+						</DataGridTextColumn.HeaderTemplate>
+					</DataGridTextColumn>
+					<DataGridTextColumn  Header="Sifra" Binding="{Binding Path = sifra}"  Width="200"  FontSize="17"  IsReadOnly="True">
+						<DataGridTextColumn.HeaderTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<TextBlock  Text="{Binding Content, RelativeSource=
+                                         {RelativeSource Mode=TemplatedParent}}"/>
+									<TextBox  x:Name="txtIdSifra" Width="66" TextChanged="txtName_TextChanged" MaxLength="20"  />
+								</StackPanel>
+							</DataTemplate>
+						</DataGridTextColumn.HeaderTemplate>
+					</DataGridTextColumn>
+					<DataGridTextColumn  Header="Naziv" Binding="{Binding Path = naziv}" Width="200"  FontSize="17"  IsReadOnly="True">
+						<DataGridTextColumn.HeaderTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<TextBlock  Text="{Binding Content, RelativeSource=
+                                         {RelativeSource Mode=TemplatedParent}}"/>
+									<TextBox  x:Name="txtIdNaziv" Width="51" TextChanged="txtName_TextChanged" MaxLength="25" Height="21"  />
+								</StackPanel>
+							</DataTemplate>
+						</DataGridTextColumn.HeaderTemplate>
+					</DataGridTextColumn>
+					<DataGridTextColumn  Header="Adresa" Binding="{Binding Path = adresa}" Width="150"  FontSize="15"  IsReadOnly="True">
+						<DataGridTextColumn.HeaderTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<TextBlock  Text="{Binding Content, RelativeSource=
+                                         {RelativeSource Mode=TemplatedParent}}"/>
+									<TextBox  x:Name="txtIdAdresa" Width="62" TextChanged="txtName_TextChanged" MaxLength="20" Height="21"  />
+								</StackPanel>
+							</DataTemplate>
+						</DataGridTextColumn.HeaderTemplate>
+					</DataGridTextColumn>
+
+
+				</DataGrid.Columns>
+			</DataGrid>
+			<Button Content="Prikazi Raspored" Name="prikaziRasporedBtn" HorizontalAlignment="Left" Margin="540,296,0,-105" VerticalAlignment="Top" Width="95" Height="44" Click="PrikaziRasporedBtn_Click"/>
+			<Button Content="Obrisi Raspored" Name="obrisiRasporedBtn" HorizontalAlignment="Left" Margin="664,296,0,-105" VerticalAlignment="Top" Width="95" Height="44" Click="ObrisiRasporedBtn_Click"/>
+		</Grid>
+		<Button Content="Obrisi" Grid.Row="2" HorizontalAlignment="Left" Margin="279,62,0,0" Name="ObrisiBtnSpisakSalona" Width="100" Click="ObrisiBtnSpisakSalona_Click" Height="44" VerticalAlignment="Top" />
+		<Button Content="Izmeni" Height="44" HorizontalAlignment="Left" Margin="155,62,0,0" Name="IzmeniBtnSpisakSalona" VerticalAlignment="Top" Width="100" Grid.Row="2" Click="IzmeniBtnSpisakSalona_Click" />
+		<Button Content="Dodaj" Grid.Column="0" Grid.Row="2" Height="44" HorizontalAlignment="Left" Margin="27,60,0,0" x:Name="DodajBtnSpisakSalona" VerticalAlignment="Top" Width="100"  Click="DodajBtnSpisakSalona_Click" />
+
+		<Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="337,62,0,40" Name="button1" Width="44" Click="Refresh_Click" >
+
+			<StackPanel Orientation="Horizontal"  Height="31">
+				<Image  Source="/SF52-2015;component/refresh2.png" Stretch="Uniform" Width="27" RenderOptions.BitmapScalingMode="HighQuality" RenderTransformOrigin="0.525,0.5" Margin="0,3"   />
+			</StackPanel>
+		</Button>
+		<Button Content="Generisi Raspored" Name="generisiBtn" HorizontalAlignment="Left" Margin="408,62,0,0" Grid.Row="2" VerticalAlignment="Top" Width="106" Height="43" Click="GenerisiBtn_Click" Grid.ColumnSpan="2"/>
+		<Label Content="Saloni" Foreground="White" HorizontalAlignment="Left" Margin="39,10,0,0" VerticalAlignment="Top" Height="42" Width="192" FontSize="20"/>
+	</Grid>
+</Window>

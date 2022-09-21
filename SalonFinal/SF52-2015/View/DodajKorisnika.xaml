@@ -1,0 +1,81 @@
+﻿<Window x:Class="SF52_2015.View.DodajKorisnika"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SF52_2015.View.Converters"
+        xmlns:s="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="DodajKorisnika" Height="578" Width="729" WindowStartupLocation="CenterScreen">
+	<Window.Background>
+		<ImageBrush Stretch="Fill" AlignmentY="Top" AlignmentX="Center" ImageSource="/SF52-2015;component/Salon3.jpg"></ImageBrush>
+	</Window.Background>
+	<Grid Name="mainWindowGrid" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Visible">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition/>
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Label Content="Ime"  HorizontalAlignment="Left" Margin="203,34,0,0" VerticalAlignment="Top" Height="35" Width="99"/>
+		<Label Content="Prezime" HorizontalAlignment="Left" Margin="180,74,0,0" VerticalAlignment="Top" Height="38" Width="99"/>
+		<Label Content="Tip" HorizontalAlignment="Left" Margin="203,121,0,0" VerticalAlignment="Top" Width="99" Height="39"/>
+		<Label Content="Korisnicko Ime" HorizontalAlignment="Left" Margin="147,171,0,0" VerticalAlignment="Top" Width="99" Height="37" Grid.RowSpan="2"/>
+		<Label Content="Lozinka" HorizontalAlignment="Left" Margin="157,25,0,0" Grid.Row="1" VerticalAlignment="Top" Width="99" Height="39"/>
+		<Label Content="Email" HorizontalAlignment="Left" Margin="180,64,0,0" Grid.Row="1" VerticalAlignment="Top" Width="99" Height="40"/>
+		<TextBox MaxLength="25" Name="imeTextBox" HorizontalAlignment="Left" Height="23" Margin="241,34,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+		<TextBox MaxLength="25" Name="prezimeTextBox" HorizontalAlignment="Left" Height="24" Margin="241,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+		<ComboBox  Name="tipComboBox" HorizontalAlignment="Left" Margin="241,123,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="tipComboBox_SelectionChanged">
+			<ComboBoxItem Name="AdminCbi" Content="ADMIN"/>
+			<ComboBoxItem Name="MusterijaCbi" Content="MUSTERIJA"/>
+			<ComboBoxItem Name="RadnikCbi" Content="RADNIK" IsSelected="True"/>
+
+		</ComboBox>
+
+		<TextBox MaxLength="25" Name="korisnicko_imeTextBox" HorizontalAlignment="Left" Height="23" Margin="246,171,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+
+		<TextBox MaxLength="25" Name="lozinkaTextBox" HorizontalAlignment="Left" Height="23" Margin="241,30,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+		<TextBox MaxLength="50" Name="emailTextBox" HorizontalAlignment="Left" Height="23" Margin="241,69,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+		<Button Content="Dodaj" Name="DodajBtn" Grid.Column="1" HorizontalAlignment="Left" Margin="24,105,0,0" Grid.Row="2" VerticalAlignment="Top" Width="116" Height="36" Click="DodajBtn_Click" >
+			<Button.Style>
+				<Style TargetType="{x:Type Button}">
+					<Style.Resources>
+						<local:MyTextValidationConverter x:Key="MyTextValidationConverter"/>
+					</Style.Resources>
+					<Setter Property="IsEnabled" >
+						<Setter.Value>
+
+							<MultiBinding Converter="{StaticResource MyTextValidationConverter}">
+								<Binding Path="Text" ElementName="korisnicko_imeTextBox"/>
+								<Binding Path="Text" ElementName="imeTextBox"/>
+								<Binding Path="Text" ElementName="prezimeTextBox"/>
+								<Binding Path="Text" ElementName="lozinkaTextBox"/>
+								<Binding Path="Text" ElementName="emailTextBox"/>
+								<Binding Path="Text" ElementName="saloni_idComboBox"/>
+
+
+
+
+
+
+
+							</MultiBinding>
+
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</Button.Style>
+
+		</Button>
+		<Button Content="Otkazi" Name="OtkaziBtn" HorizontalAlignment="Left" Margin="85,105,0,0" Grid.Row="2" VerticalAlignment="Top" Width="110" Height="36" Click="OtkaziBtn_Click"/>
+		<ComboBox Name="saloni_idComboBox" HorizontalAlignment="Left" Margin="241,113,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+		<Label Name="Saloni" Content="Salon radnika:" HorizontalAlignment="Left" Margin="147,109,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+
+	</Grid>
+
+
+</Window>

@@ -1,0 +1,91 @@
+﻿<Window x:Class="SF52_2015.View.IzmenaTermina"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SF52_2015.View.Converters"
+        mc:Ignorable="d"
+        Title="IzmeniTermina" Height="578" Width="729" WindowStartupLocation="CenterScreen">
+	<Window.Background>
+		<ImageBrush Stretch="Fill" AlignmentY="Top" AlignmentX="Center" ImageSource="/SF52-2015;component/Salon2.jpg"></ImageBrush>
+	</Window.Background>
+	<Grid Name="mainWindowGrid" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Visible">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition/>
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Label Content="Sifra"  HorizontalAlignment="Left" Margin="302,46,0,0" VerticalAlignment="Top" Height="35" Width="99" Grid.ColumnSpan="2"/>
+		<Label Content="Vreme Zauzeca" HorizontalAlignment="Left" Margin="273,102,0,0" VerticalAlignment="Top" Height="39" Width="99" Grid.ColumnSpan="2"/>
+		<Label Content="Radnik na terminu" HorizontalAlignment="Left" Margin="252,10,0,0" VerticalAlignment="Top" Width="175" Height="39" Grid.Row="1" Grid.ColumnSpan="2"/>
+		<Label Content="Musterija koja je zakazala termin" HorizontalAlignment="Left" Margin="176,45,0,0" VerticalAlignment="Top" Width="205" Height="39" Grid.Row="1" Grid.ColumnSpan="2"/>
+		<Label Content="Tip" HorizontalAlignment="Left" Margin="302,155,0,0" VerticalAlignment="Top" Height="38" Width="99" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+		<Label Content="Dan" HorizontalAlignment="Left" Margin="302,84,0,0" Grid.Row="1" VerticalAlignment="Top" Width="99" Height="37" Grid.ColumnSpan="2"/>
+		<Label Content="Soba termina id" HorizontalAlignment="Left" Margin="252,133,0,0" Grid.Row="1" VerticalAlignment="Top" Width="99" Height="39"/>
+		<TextBox MaxLength="25" Name="sifra_terminaTextBox" HorizontalAlignment="Left" Height="23" Margin="10.667,46,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+		<ComboBox Name="vreme_zauzecaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10.667,104,0,0"  VerticalAlignment="Top" Width="120">
+			<ComboBoxItem Name="t1" Content="od 06 do 09" IsSelected="True"/>
+			<ComboBoxItem Name="t2" Content="od 09 do 12" />
+			<ComboBoxItem Name="t3" Content="od 12 do 15" />
+			<ComboBoxItem Name="t4" Content="od 15 do 18" />
+			<ComboBoxItem Name="t5" Content="od 18 do 21" />
+			<ComboBoxItem Name="t6" Content="od 21 do 00" />
+		</ComboBox>
+
+		<ComboBox Name="tip_masazeComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10.667,157,0,0" VerticalAlignment="Top" Width="120">
+			<ComboBoxItem Name="TerapeutskaCbi" Content="TERAPEUTSKA"/>
+			<ComboBoxItem Name="AntistresCbi" Content="ANTISTRES" IsSelected="True"/>
+
+		</ComboBox>
+
+
+		<ComboBox Name="radnik_zauzeo_termin_idComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10.667,17.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120">
+
+		</ComboBox>
+		<ComboBox Name="soba_termina_idComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10.667,133.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120">
+		</ComboBox>
+		<ComboBox  Name="danTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="11,86,0,0" Grid.Row="1"  VerticalAlignment="Top" Width="120">
+			<ComboBoxItem Name="po" Content="PONEDELJAK" IsSelected="True"/>
+			<ComboBoxItem Name="ut" Content="UTORAK" />
+			<ComboBoxItem Name="sr" Content="SREDA" />
+			<ComboBoxItem Name="ce" Content="CETVRTAK" />
+			<ComboBoxItem Name="pe" Content="PETAK" />
+			<ComboBoxItem Name="su" Content="SUBOTA" />
+			<ComboBoxItem Name="ne" Content="NEDELJA" />
+		</ComboBox>
+		<Button Content="Izmeni" Name="IzmeniBtn" Grid.Column="1" HorizontalAlignment="Left" Margin="104,74,0,0" Grid.Row="2" VerticalAlignment="Top" Width="116" Height="36" Click="IzmeniBtn_Click" >
+			<Button.Style>
+				<Style TargetType="{x:Type Button}">
+					<Style.Resources>
+						<local:MyTextValidationConverter x:Key="MyTextValidationConverter"/>
+					</Style.Resources>
+					<Setter Property="IsEnabled" >
+						<Setter.Value>
+
+							<MultiBinding Converter="{StaticResource MyTextValidationConverter}">
+								<Binding Path="Text" ElementName="sifra_terminaTextBox"/>
+								<Binding Path="Text" ElementName="vreme_zauzecaTextBox"/>
+								<Binding Path="Text" ElementName="tip_masazeComboBox"/>
+								<Binding Path="Text" ElementName="radnik_zauzeo_termin_idComboBox"/>
+								<Binding Path="Text" ElementName="soba_termina_idComboBox"/>
+								<Binding Path="Text" ElementName="danTextBox"/>
+
+							</MultiBinding>
+
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</Button.Style>
+		</Button>
+		<Button Content="Otkazi" Name="OtkaziBtn" HorizontalAlignment="Left" Margin="241,74,0,0" Grid.Row="2" VerticalAlignment="Top" Width="110" Height="36" Click="OtkaziBtn_Click"/>
+		<ComboBox x:Name="musterija_zauzela_termin_idComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="11,49,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+
+	</Grid>
+
+
+</Window>

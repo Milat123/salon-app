@@ -1,0 +1,127 @@
+﻿<Window x:Class="SF52_2015.View.Profil"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SF52_2015.View"
+        mc:Ignorable="d"
+        Title="Profil" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+		<ImageBrush Stretch="Fill" AlignmentY="Top" AlignmentX="Center" ImageSource="/SF52-2015;component/Salon3.jpg"></ImageBrush>
+    </Window.Background>
+    <Grid>
+        <TextBox Name="imeTb"  IsReadOnly="True" Background="Transparent"  Foreground="LightBlue" HorizontalAlignment="Left" Height="23" Margin="35,42,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="84"/>
+        <TextBox Name="prezimeTb" IsReadOnly="True" Background="Transparent" Foreground="LightBlue" HorizontalAlignment="Left" Height="23" Margin="140,42,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="84"/>
+        <TextBox Name="emailTb" IsReadOnly="True" Background="Transparent" Foreground="LightBlue" HorizontalAlignment="Left" Height="23" Margin="246,42,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="84"/>
+        <TextBox Name="korisnickoImeTb" IsReadOnly="True" Background="Transparent" Foreground="LightBlue" HorizontalAlignment="Left" Height="23" Margin="354,42,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="84"/>
+        <TextBox  Name="lozinkaTb" IsReadOnly="True" Background="Transparent" Foreground="LightBlue" HorizontalAlignment="Left" Height="23" Margin="466,42,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="84"/>
+        <TextBox Name="tipTb" IsReadOnly="True" Background="Transparent" Foreground="LightBlue" HorizontalAlignment="Left" Height="23" Margin="583,42,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="84"/>
+
+        <DataGrid x:Name="terminiDataGrid"   ItemsSource="{Binding}"    AutoGenerateColumns="False"  HorizontalAlignment="Left" Margin="15,103,0,0" VerticalAlignment="Top" CanUserAddRows="False" Height="212">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Header="Termin ID" Binding="{Binding Path = termin_id}"  Width="100"  FontSize="17"  IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  Text="{Binding Content, RelativeSource=
+                                         {RelativeSource Mode=TemplatedParent}}"/>
+                                <TextBox PreviewTextInput="NumberValidationTextBox" x:Name="txtId" Width="34" TextChanged="txtName_TextChanged" MaxLength="9"  />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn  Header="Sifra" Binding="{Binding Path = sifra_termina}"  Width="100"  FontSize="17"  IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  Text="{Binding Content, RelativeSource=
+                                         {RelativeSource Mode=TemplatedParent}}"/>
+                                <TextBox  x:Name="txtIdSifra_termina" Width="66" TextChanged="txtName_TextChanged" MaxLength="20"  />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn  Header="Vreme" Binding="{Binding Path = vreme_zauzeca}" Width="100"  FontSize="17"  IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  Text="{Binding Content, RelativeSource=
+                                         {RelativeSource Mode=TemplatedParent}}"/>
+                                <TextBox  x:Name="txtIdVreme_zauzeca" Width="51" TextChanged="txtName_TextChanged" MaxLength="25" Height="21"  />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn  Header="Dan" Binding="{Binding Path = dan}" Width="150"  FontSize="15"  IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  Text="{Binding Content, RelativeSource=
+                                         {RelativeSource Mode=TemplatedParent}}"/>
+                                <TextBox  x:Name="txtIdDan" Width="62" TextChanged="txtName_TextChanged" MaxLength="20" Height="21"  />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+
+				<DataGridTextColumn  Header="Tip" Binding="{Binding Path = tip_tretmana}" Width="100"  FontSize="17"  IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  Text="{Binding Content, RelativeSource=
+                                         {RelativeSource Mode=TemplatedParent}}"/>
+                                <TextBox  x:Name="txtIdTip_tretmana" Width="62" TextChanged="txtName_TextChanged" MaxLength="15" Height="21"  />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn  Header="Soba ID" Binding="{Binding Path = soba_termina_id}" Width="100"  FontSize="17"  IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  Text="{Binding Content, RelativeSource=
+                                         {RelativeSource Mode=TemplatedParent}}"/>
+                                <TextBox PreviewTextInput="NumberValidationTextBox" x:Name="txtIdSoba_termina_id" Width="34" TextChanged="txtName_TextChanged" MaxLength="9"  />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+				<DataGridTextColumn  Header="Salon ID" Binding="{Binding Path = salon_termina_id}" Width="100"  FontSize="17"  IsReadOnly="True">
+					<DataGridTextColumn.HeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock  Text="{Binding Content, RelativeSource=
+                                         {RelativeSource Mode=TemplatedParent}}"/>
+								<TextBox PreviewTextInput="NumberValidationTextBox" x:Name="txtSalon_termina_id" Width="34" TextChanged="txtName_TextChanged" MaxLength="9"  />
+							</StackPanel>
+						</DataTemplate>
+					</DataGridTextColumn.HeaderTemplate>
+				</DataGridTextColumn>
+			</DataGrid.Columns>
+        </DataGrid>
+
+        <Button HorizontalAlignment="Left" Margin="575,308,0,27.333" Name="button1" Width="37" Click="Refresh_Click" RenderTransformOrigin="0.5,0.5" >
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-89.993"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+
+
+            <StackPanel Orientation="Horizontal"  Height="31">
+                <Image  Source="/SF52-2015;component/refresh2.png" Stretch="Uniform" Width="27" RenderOptions.BitmapScalingMode="HighQuality" RenderTransformOrigin="0.537,0.507" Margin="0,3,0,0" Height="25" VerticalAlignment="Top"   />
+            </StackPanel>
+        </Button>
+        <Label Content="Ime" Foreground="White" HorizontalAlignment="Left" Height="27" Margin="35,10,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label Content="Prezime" Foreground="White" HorizontalAlignment="Left" Height="27" Margin="140,10,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label Content="Email" Foreground="White" HorizontalAlignment="Left" Height="27" Margin="246,10,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label Content="KorisnickoIme" Foreground="White" HorizontalAlignment="Left" Height="27" Margin="354,10,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label Content="Lozinka" Foreground="White" HorizontalAlignment="Left" Height="27" Margin="466,10,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label Content="Tip" Foreground="White" HorizontalAlignment="Left" Height="27" Margin="583,10,0,0" VerticalAlignment="Top" Width="84"/>
+    </Grid>
+
+</Window>

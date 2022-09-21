@@ -1,0 +1,68 @@
+﻿CREATE TABLE KORISNIK(
+  korisnik_id INTEGER PRIMARY KEY,
+  ime STRING,
+  prezime STRING,
+  email STRING,
+  korisnicko_ime STRING UNIQUE,
+  lozinka STRING,
+  tip STRING,
+  radnik INTEGER,
+  zaposlen_salon_id INTEGER,
+  ulogovan STRING,
+  obrisan STRING
+ 
+  
+);
+
+CREATE TABLE SALON(
+  salon_id INTEGER PRIMARY KEY,
+  sifra STRING UNIQUE,
+  naziv STRING,
+  adresa STRING,
+  obrisan STRING 
+);
+
+CREATE TABLE SOBA(
+  soba_id INTEGER PRIMARY KEY,
+  sifra STRING UNIQUE,
+  broj_sobe STRING,
+  broj_kreveta STRING,
+  tip_sobe STRING,
+  salon_id INTEGER,
+  obrisan STRING 
+);
+
+CREATE TABLE TERMIN(
+  termin_id INTEGER PRIMARY KEY,
+  sifra_termina STRING UNIQUE,
+  vreme_zauzeca STRING,
+  dan STRING,
+  tip_tretmana STRING,
+  korisnik_zauzeo_termin_id INTEGER,
+  soba_termina_id INTEGER,
+  obrisan STRING 
+);
+CREATE TABLE RASPORED(
+  raspored_id INTEGER PRIMARY KEY,
+  salon_id INTEGER ,
+  vreme_zauzeca STRING,
+  dan STRING,
+  tip_tretmana STRING,
+  radnik_ime STRING,
+  radnik_prezime STRING,
+  broj_sobe STRING,
+  obrisan STRING 
+);
+
+INSERT INTO korisnik(KORISNIK_ID,IME,PREZIME,EMAIL,KORISNICKO_IME,LOZINKA,TIP,RADNIK,ZAPOSLEN_SALON_ID,ULOGOVAN, OBRISAN)
+VALUES(1,"Aleksandar","Milatovic","aca@gmail.com","a","a","ADMIN",1,1,"0","0");
+
+INSERT INTO SALON(salon_id,sifra,naziv,adresa,obrisan)
+VALUES(1,"1a","Masaza lux","Jelice Stanivukovic","0");
+
+INSERT INTO SOBA(soba_id, sifra, broj_sobe, broj_kreveta,tip_sobe,salon_id,obrisan)
+VALUES(1,"2bbbu","12","33","SA TELEVIZOROM", 1, "0");
+
+
+INSERT INTO TERMIN(termin_id, sifra_termina, vreme_zauzeca, dan, tip_tretmana, korisnik_zauzeo_termin_id, soba_termina_id, obrisan)
+VALUES(1,"1ttt","8AM-11AM","PONEDELJAK","ANTISTRES", 1,1, "0");
